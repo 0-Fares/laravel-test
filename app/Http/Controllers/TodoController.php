@@ -11,10 +11,12 @@ use App\Http\Requests\UpdateTodoRequest;
 class TodoController extends Controller
 {
 
+    //Use Todo authorization policy
     public function __construct()
     {
         $this->authorizeResource(Todo::class, 'todo');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +24,11 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return Auth::user()->todos()->simplePaginate(15);
+        $todos = Auth::user()->todos()->simplePaginate(15);
+        return response()->json([
+            'success' => true,
+            'data' => $todos
+        ], 200);
     }
 
     /**
@@ -39,8 +45,7 @@ class TodoController extends Controller
         return response()->json([
             'success' => true,
             'data' => $todo
-        ]
-            , 200);;
+        ], 200);
     }
 
     /**
@@ -51,7 +56,10 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        return response()->json($todo, 200);
+        return response()->json([
+            'success' => true,
+            'data' => $todo
+        ], 200);
     }
 
     /**

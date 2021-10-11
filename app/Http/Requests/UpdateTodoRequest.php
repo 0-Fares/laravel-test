@@ -16,10 +16,11 @@ class UpdateTodoRequest extends FormRequest
      */
     public function authorize()
     {
-        $todoUserId = $this->route('todo')->user_id;
-        $currentUserId = $this->user()->id;
+        // Authorization is handled with the Authorization Policy, if we wanted to handle it here, commented code below would be the way
+        // $todoUserId = $this->route('todo')->user_id;
+        // $currentUserId = $this->user()->id;
+        // return ($todoUserId === $currentUserId);
 
-        //return ($todoUserId === $currentUserId);
         return true;
     }
 
