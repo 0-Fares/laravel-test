@@ -10,6 +10,11 @@ use App\Http\Requests\UpdateTodoRequest;
 
 class TodoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Todo::class, 'todo');
+    }
     /**
      * Display a listing of the resource.
      *
