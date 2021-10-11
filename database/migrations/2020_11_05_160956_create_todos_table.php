@@ -17,10 +17,10 @@ class CreateTodosTable extends Migration
             $table->id();
 
             $table->string('title')->nullable();
-            $table->boolean('complete')->nullable();
+            $table->boolean('complete')->default(false);
             $table->mediumText('description')->nullable();
 
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
